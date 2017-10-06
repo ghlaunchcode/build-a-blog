@@ -1,3 +1,5 @@
+#! /usr/bin/python3
+
 # main.py
 # Build A Blog
 # 2017, polarysekt

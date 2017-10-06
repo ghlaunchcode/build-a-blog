@@ -1,3 +1,12 @@
+== QuickUP
+
+$ ./main.py
+
+TODO: rename app.py
+
+
+== LC101 formal method
+
 create a python virtual environment
 
 $ virtualenv --python=python3
