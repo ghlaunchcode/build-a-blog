@@ -1,0 +1,11 @@
+create a python virtual environment
+
+$ virtualenv --python=python3
+
+switch user to root
+
+$ su
+
+run environment
+
+# python main.py
