@@ -1,0 +1,62 @@
+html {
+	font-size: 12pt;
+}
+
+body {
+	font-family: sans-serif;
+}
+	
+h1 {
+	margin: 0;
+	padding: 0;
+	text-shadow: 3px 3px #ccc;
+	color: #009;
+}
+
+h2 {
+	margin: 0;
+	padding: 0;
+	text-shadow: 1px 1px #ccc;
+}
+header {
+	display: flex;
+	width: 100%;
+}
+
+
+h1 {
+	display: flex-row;;
+}
+
+.headerBarContent p {
+	padding-left: 1em;
+	text-align: left;
+	display: flex;;
+			font-style: italic;
+	}
+
+header nav {
+	text-align: right;
+	display: table-cell;
+	}
+
+		footer {
+
+			display: table;
+			width: 100%;
+		}
+		.footerBarContent {
+			display: table-row;
+		}
+		.footerBarContent .bottomLinks {
+			text-align: left;
+			display: table-cell;
+		}
+		.footerBarContent .copyrightInfo {
+			text-align: right;
+			font-size: 75%;
+		}
+
+		main {
+			padding: 1em;
+		}

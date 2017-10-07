@@ -1,0 +1,8 @@
+{% extends 'boilerplate.html' %}
+{% block content %}
+<form>
+	<label for="pt_in"/>
+	<input type="text" name="pt_in" value="{{post_title}}"></input>
+	<span class="worry_user">{{pt_errmsg}}</span>
+</form>
+{% endblock %}
