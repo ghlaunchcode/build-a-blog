@@ -8,19 +8,93 @@
         <meta charset="UTF-8" />
         <meta name="author" content="polarysekt" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link href="https://fonts.googleapis.com/css?family=Libre+Barcode+128|Sedgwick+Ave|Open+Sans+Condensed|Nunito|Libre+Barcode+39+Text|Monoton|Oswald|Righteous|Source+Code+Pro" rel="stylesheet">
+
+		<!-- enable for production?
 		<link rel="stylesheet" href="{{url_for('static', filename='style.css')}}"\>
-				<title>{{ghSite_Name}}::{{ghPage_Title}}</title>
+		-->
+		<title>{{ghSite_Name}}::{{ghPage_Title}}</title>
+		<style>
+			html {
+			    
+				font-family: Oswald, sans-serif;
+				font-size: 12pt;
+			}
+			
+			h1, h2, h3 {
+				margin: 0;
+				padding: 0;
+			}
+			
+			h2 {
+				font-family: Righteous;
+			}
+			
+			/*TODO: flexbox */
+			
+			header, footer {
+				display: table;
+				/*display: flex;
+				flex-direction: row;
+				align-items: center;
+				*/
+				width: 100%;
+			}
+			
+			header h1 {
+				font-family: "Sedgwick Ave";
+				text-shadow: 3px 3px #ccc;
+				color: #009;
+				display: table-cell;
+			}
+			
+			header p {
+				margin-left: 1em;
+				display: table-cell;
+			}
+			header nav {
+				text-align: right;
+				display: table-cell;
+			}
+			
+			footer nav {
+				display: table-cell;
+			}
+			
+			footer p {
+				font-style: italic;
+				font-size: 75%;
+			
+				text-align: right;
+				display: table-cell;
+				
+			}
+			
+			main {
+				padding: .5em;
+			}
+			
+			.ghFlexRow {
+				display: table-row;
+			}
+			
+			.cardRed {
+				color: #f00;
+			}
+
+		</style>
     </head>
     <body>
 	<header>
 		<a name="top"/>
-		<h1>{{ghSite_Name}}</h1>
-		<span>Community: {{ghFlop}}</span>
-		<nav>
-			<!-- TODO:: current page as selected 'tab' -->
-			[ <a href="blog">home</a> | <a href="newpost">&#x2710;new</a> ]
-		</nav>
-
+		<div class="ghFlexRow">
+			<h1>{{ghSite_Name}}</h1>
+			<p>{{ghSlogan}}</p>
+			<nav>
+				<!-- TODO:: current page as selected 'tab' -->
+				[ <a href="blog">home</a> | <a href="newpost">&#x2710;new</a> ]
+			</nav>
+		</div>
 		<h2>{{ghPage_Title}}</h2>
 	</header>
 	<main>      
@@ -28,12 +102,14 @@
         {% endblock %}
 	</main>
 	<footer>
-		<nav>
-			[ <a href="#top">top</a> ]
-		</nav>
-		<span class="copyrightInfo">
-			Copyright &copy; 2017, Geoffrey Hadler
-		</span>
+		<div class="ghFlexRow">
+			<nav>
+				[ <a href="#top">top</a> ]
+			</nav>
+			<p>
+				Copyright &copy; 2017, Geoffrey Hadler
+			</p>
+		</div>
 	</footer>
     </body>
 </html>
