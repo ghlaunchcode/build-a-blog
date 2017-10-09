@@ -8,6 +8,7 @@
         <meta charset="UTF-8" />
         <meta name="author" content="polarysekt" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link href="shortcut icon" href="{{url_for('static', filename='favicon.ico') }}" />
 		<link href="https://fonts.googleapis.com/css?family=Libre+Barcode+128|Sedgwick+Ave|Open+Sans+Condensed|Nunito|Libre+Barcode+39+Text|Monoton|Oswald|Righteous|Source+Code+Pro" rel="stylesheet">
 
 		<!-- enable for production?
@@ -33,11 +34,11 @@
 			/*TODO: flexbox */
 			
 			header, footer {
-				display: table;
-				/*display: flex;
+				/*display: table;*/
+				display: flex;
 				flex-direction: row;
 				align-items: center;
-				*/
+				
 				width: 100%;
 			}
 			
@@ -45,20 +46,20 @@
 				font-family: "Sedgwick Ave";
 				text-shadow: 3px 3px #ccc;
 				color: #009;
-				display: table-cell;
+				/*display: table-cell;*/
 			}
 			
 			header p {
 				margin-left: 1em;
-				display: table-cell;
+				/*display: table-cell;*/
 			}
 			header nav {
 				text-align: right;
-				display: table-cell;
+				/*display: table-cell;*/
 			}
 			
 			footer nav {
-				display: table-cell;
+				/*display: table-cell;*/
 			}
 			
 			footer p {
@@ -66,7 +67,7 @@
 				font-size: 75%;
 			
 				text-align: right;
-				display: table-cell;
+				/*display: table-cell;*/
 				
 			}
 			
@@ -86,30 +87,26 @@
     </head>
     <body>
 	<header>
-		<a name="top"/>
-		<div class="ghFlexRow">
+		<a name="top"></a>
 			<h1>{{ghSite_Name}}</h1>
 			<p>{{ghSlogan}}</p>
 			<nav>
 				<!-- TODO:: current page as selected 'tab' -->
 				[ <a href="blog">home</a> | <a href="newpost">&#x2710;new</a> ]
 			</nav>
-		</div>
-		<h2>{{ghPage_Title}}</h2>
 	</header>
-	<main>      
+	<main>
+		<h2>{{ghPage_Title}}</h2>
 		{% block content %}
         {% endblock %}
 	</main>
 	<footer>
-		<div class="ghFlexRow">
 			<nav>
 				[ <a href="#top">top</a> ]
 			</nav>
 			<p>
 				Copyright &copy; 2017, Geoffrey Hadler
 			</p>
-		</div>
 	</footer>
     </body>
 </html>
