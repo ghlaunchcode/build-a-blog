@@ -1,5 +1,26 @@
 {% extends 'boilerplate.html' %}
 
 {% block content %}
-<h3>blog-specific</h3>
+	<style>
+		.ghBlogView {
+			padding: .5em;
+/* 			border: 2pt inset; */
+/* 			border-radius: .25em; */
+		}
+		.ghBlogEntry {
+			padding: .5em;
+		}
+	</style>
+	<div class="ghBlogView">
+	{% if ghEntries|length == 0 %}
+		<p>Blog is Empty</p>
+	{% else %}
+		{% for entry in ghEntries %}
+			<div class="ghBlogEntry">
+			<h3>{{entry.title}}</h3>[#{{entry.id}}]
+			<p>{{entry.content}}</p>
+			</div>
+		{% endfor %}
+	{% endif %}
+	</div>
 {% endblock %}

@@ -4,4 +4,4 @@ echo "INSTALL dependencies for Build-A-Blog"
 
 pip install flask
 pip install flask_sqlalchemy
-
+pip install pymysql

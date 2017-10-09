@@ -20,3 +20,13 @@ $ su
 run environment
 
 # python main.py
+
+== Create initial Database
+
+>>> from app import g_db,BlogEntry
+>>> g_db.create_all()
+
+=== Add new entry
+>>> new_entry = BlogEntry("First","This is the first (initial) entry")
+>>> g_db.session.add(new_entry)
+>>> g_db.session.commit()
