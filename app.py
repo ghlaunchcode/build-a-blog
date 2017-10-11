@@ -29,6 +29,12 @@ g_db = SQLAlchemy(g_app)
 g_ghSITE_NAME = "Build-A-Blog"
 g_ghSITE_VERSION = "2017.10.09::[gsh]"
 
+g_ghSECTION_BLOG = "BLOG"
+g_ghSECTION_POKER ="Poker"
+g_ghSECTION_NEW = "New Entry"
+
+# BlogEntry for DB
+# TODO: add date/time (req regen)
 class BlogEntry(g_db.Model):
     id = g_db.Column(g_db.Integer, primary_key=True)
     title = g_db.Column(g_db.String(127))
@@ -40,6 +46,7 @@ class BlogEntry(g_db.Model):
         self.content = content
 
 
+# TODO:
 #@g_app.before_request
 #def check_login():
 
@@ -51,28 +58,35 @@ def index( ):
 # ROUTE "/flop" is EASTER EGG
 @g_app.route( "/flop" )
 def flop():
-    return render_template('flop.html', ghSite_Name=g_ghSITE_NAME, ghSlogan=getSlogan(), ghPokerFlop=Markup(getHandHTML()),ghPage_Title="Community" )
+    strNav = '<a href="/">' + g_ghSITE_NAME + '</a>' + " :: " + '<a href="/flop">' + g_ghSECTION_POKER + '</a>'
+    #TODO get hole cards
+    return render_template('flop.html', ghSite_Name=g_ghSITE_NAME, ghSlogan=getSlogan(), ghPokerFlop=Markup(getHandHTML()),ghNav=Markup(strNav),ghPage_Title="Poker" )
 
 # ROUTE "/blog" :: Landing Page / Posts Overview / View Individual
 @g_app.route( "/blog" )
 def blog():
     # TODO: check GET for entry view
-    strEntryTitle = "BLog :: "
+    strNav = '<a href="/">' + g_ghSITE_NAME + '</a>' + " :: " + '<a href="/blog">' + g_ghSECTION_BLOG + '</a>' 
+    strPageTitle = "BLog"
     
     postID = request.args.get('id')
     
-    if( postID == None ):
-        strEntryTitle += "All Entries"
-        view_entries = BlogEntry.query.all()
-    else:
-        strEntryTitle += "Entry #" + postID
-        view_entries = BlogEntry.query.filter_by(id=postID)
+    # TODO:
+    # validate id
+    try:
+        if( postID == None ):
+            view_entries = BlogEntry.query.all()
+        else:
+            view_entries = BlogEntry.query.filter_by(id=postID)
+            strNav += " :: " + '<a href="?id=' + postID + '">' + view_entries.first().title + '</a>'
+    except:
+        view_entries = ""
 #    print( "DEBUG:::::::", view_entries )
 #    if( view_entries == "" ):
 #        print( "IS NOTHING" )
 #    if( len(view_entries) == 0 ):
 #        print( "IS NOTHING #2" )
-    return render_template('blog.html',ghSite_Name=g_ghSITE_NAME, ghSlogan=getSlogan(),ghPage_Title=strEntryTitle,ghEntries=view_entries )
+    return render_template('blog.html',ghSite_Name=g_ghSITE_NAME, ghSlogan=getSlogan(),ghPage_Title=strPageTitle,ghNav=Markup(strNav),ghEntries=view_entries )
 
 # ROUTE "/newpost" :: New Blog Post Form [ Get | Post ]
 @g_app.route( "/newpost", methods=['POST', 'GET'] )
@@ -82,8 +96,10 @@ def newpost():
 	# POST ==> FORM on FAIL
 	#      ==> ADD POST on SUCCESS
     # TODO: validate form
+    strNav = '<a href="/">' + g_ghSITE_NAME + '</a>' + " :: " + '<a href="/blog">' + g_ghSECTION_BLOG + '</a> :: ' + g_ghSECTION_NEW 
+    strPageTitle = "BLog"
     
-    return render_template('newpost.html',ghSite_Name=g_ghSITE_NAME, ghSlogan=getSlogan(),ghPage_Title="BLog :: New Post" )
+    return render_template('newpost.html',ghSite_Name=g_ghSITE_NAME,ghSlogan=getSlogan(),ghPage_Title=strPageTitle,ghNav=Markup(strNav) )
 
 
 def main():

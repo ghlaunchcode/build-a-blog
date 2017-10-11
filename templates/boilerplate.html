@@ -71,8 +71,30 @@
 				padding: .5em;
 			}
 			
+			a {
+				text-decoration: none;
+			}
+			
+			a:hover {
+				text-decoration: underline;
+			}
+			
 			.cardRed {
 				color: #f00;
+			}
+			
+			.ghPokerTable {
+                padding: 2em;
+                background: #090;
+                border: 2pt ridge;
+                border-radius: 1em;
+			}
+			
+			.ghPokerCard {
+                background: #ccc;
+                border: 2pt outset;
+                border-radius: .5em;
+                width: 100px;
 			}
 
 		</style>
@@ -84,11 +106,12 @@
 			<p>{{ghSlogan}}</p>
 			<nav>
 				<!-- TODO:: current page as selected 'tab' -->
-				[ <a href="blog">home</a> | <a href="newpost">&#x2710;new</a> ]
+				[ <a href="blog">home</a> | <a href="newpost">&#x2710;new</a> | <a href="flop">poker</a> ]
 			</nav>
 	</header>
 	<main>
 		<h2>{{ghPage_Title}}</h2>
+		<p>{{ghNav}}</p>
 		{% block content %}
         {% endblock %}
 	</main>

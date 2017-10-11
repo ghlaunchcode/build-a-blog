@@ -4,23 +4,28 @@
 	form {
 		padding: .5em;
 	}
+	
+	input, textarea {
+		display: block;
+	}
 	.worry_user {
 		color: #f00;
 	}
 </style>
+<!-- NOTE: 
+	changed span to BLOCK element for newline 
+	added style to input / textarea
+	-->
 <form method="POST" action="newpost">
 	<h3>Enter Post</h3>
 	<p></p>
 	<label for="pt_in">Title</label>
-	<div class="inrow">	
-		<input type="text" name="pt_in" value="{{post_title}}"></input>
-		<span class="worry_user">{{pt_errmsg}}</span>
-	</div>
+	
+	<div class="worry_user">{{pt_errmsg}}</div>
+	<input type="text" name="pt_in" value="{{post_title}}"></input>
 	<label for="pe_in">Entry</label>
-	<div class="inrow">
-		<textarea name="pe_in">{{post_entry}}</textarea>
-		<span class="worry_user">{{pe_errmsg}}</span>
-	</div>
+	<textarea name="pe_in">{{post_entry}}</textarea>
+	<div class="worry_user">{{pe_errmsg}}</div>
 	<input type="submit"></input>
 </form>
 {% endblock %}

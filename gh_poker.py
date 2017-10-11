@@ -17,15 +17,16 @@ def getDeck():
 
 def getHand():
     deck = getDeck()
-    retHand = [ deck[randint(0,51)], deck[randint(0,51)], deck[randint(0,51)], deck[randint(0,51)], deck[randint(0,51)] ]
+    retHand = [ deck[randint(0,51)],deck[randint(0,51)],deck[randint(0,51)], deck[randint(0,51)], deck[randint(0,51)], deck[randint(0,51)], deck[randint(0,51)] ]
 
     return retHand
-
 
 def getHandHTML():
     hand = getHand()
     retString = ""
-    for i in hand:
+    for ind in range(2):
+        i = hand[ind]
+        retString += '<span class="ghPokerCard">'
         s = getCardSuit(i)
         if s % 2 != 0:
             retString += '<span class="cardRed">'
@@ -33,7 +34,20 @@ def getHandHTML():
         retString += getCardSuitHTML( i )
         if s % 2 != 0:
             retString += '</span>'
-        retString += " "
+        retString += "</span> "
+    retString += '<div class="ghPokerTable">'
+    for ind in range(2,7):
+        i = hand[ind]
+        retString += '<span class="ghPokerCard">'
+        s = getCardSuit(i)
+        if s % 2 != 0:
+            retString += '<span class="cardRed">'
+        retString += str(getCardValue( i ))
+        retString += getCardSuitHTML( i )
+        if s % 2 != 0:
+            retString += '</span>'
+        retString += "</span> "
+    retString += '</div>'
     return retString
 
 def test_units():
