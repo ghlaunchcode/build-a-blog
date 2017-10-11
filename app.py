@@ -19,7 +19,7 @@ g_app = Flask( __name__ )
 g_app.config['DEBUG'] = True
 g_app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://build-a-blog:build-a-blog@localhost:3306/build-a-blog'
 g_app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-g_app.config['SQLALCHEMY_ECHO' ] = True
+#g_app.config['SQLALCHEMY_ECHO' ] = True
 
 g_db = SQLAlchemy(g_app)
 
@@ -39,6 +39,10 @@ class BlogEntry(g_db.Model):
         self.title = title
         self.content = content
 
+
+#@g_app.before_request
+#def check_login():
+
 # ROUTE "/" ==> REDIRECT to '/blog'
 @g_app.route( "/" )
 def index( ):
@@ -49,15 +53,26 @@ def index( ):
 def flop():
     return render_template('flop.html', ghSite_Name=g_ghSITE_NAME, ghSlogan=getSlogan(), ghPokerFlop=Markup(getHandHTML()),ghPage_Title="Community" )
 
-# ROUTE "/blog" :: Landing Page / Posts Overview
+# ROUTE "/blog" :: Landing Page / Posts Overview / View Individual
 @g_app.route( "/blog" )
 def blog():
-	# TODO: load blog posts from DB
-	#
-    view_entries = BlogEntry.query.all()
-    #print( view_entries )
-    #print( view_entries[0].title )
-    return render_template('blog.html',ghSite_Name=g_ghSITE_NAME, ghSlogan=getSlogan(),ghPage_Title="BLog :: Home",ghEntries=view_entries )
+    # TODO: check GET for entry view
+    strEntryTitle = "BLog :: "
+    
+    postID = request.args.get('id')
+    
+    if( postID == None ):
+        strEntryTitle += "All Entries"
+        view_entries = BlogEntry.query.all()
+    else:
+        strEntryTitle += "Entry #" + postID
+        view_entries = BlogEntry.query.filter_by(id=postID)
+#    print( "DEBUG:::::::", view_entries )
+#    if( view_entries == "" ):
+#        print( "IS NOTHING" )
+#    if( len(view_entries) == 0 ):
+#        print( "IS NOTHING #2" )
+    return render_template('blog.html',ghSite_Name=g_ghSITE_NAME, ghSlogan=getSlogan(),ghPage_Title=strEntryTitle,ghEntries=view_entries )
 
 # ROUTE "/newpost" :: New Blog Post Form [ Get | Post ]
 @g_app.route( "/newpost", methods=['POST', 'GET'] )

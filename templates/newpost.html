@@ -1,8 +1,26 @@
 {% extends 'boilerplate.html' %}
 {% block content %}
-<form>
-	<label for="pt_in"/>
-	<input type="text" name="pt_in" value="{{post_title}}"></input>
-	<span class="worry_user">{{pt_errmsg}}</span>
+<style>
+	form {
+		padding: .5em;
+	}
+	.worry_user {
+		color: #f00;
+	}
+</style>
+<form method="POST" action="newpost">
+	<h3>Enter Post</h3>
+	<p></p>
+	<label for="pt_in">Title</label>
+	<div class="inrow">	
+		<input type="text" name="pt_in" value="{{post_title}}"></input>
+		<span class="worry_user">{{pt_errmsg}}</span>
+	</div>
+	<label for="pe_in">Entry</label>
+	<div class="inrow">
+		<textarea name="pe_in">{{post_entry}}</textarea>
+		<span class="worry_user">{{pe_errmsg}}</span>
+	</div>
+	<input type="submit"></input>
 </form>
 {% endblock %}

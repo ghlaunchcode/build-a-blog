@@ -12,12 +12,14 @@
 		}
 	</style>
 	<div class="ghBlogView">
-	{% if ghEntries|length == 0 %}
-		<p>Blog is Empty</p>
+
+	<!-- TODO -->
+	{% if 1==0 %} 
+		<p>No data to show.</p>
 	{% else %}
 		{% for entry in ghEntries %}
 			<div class="ghBlogEntry">
-			<h3>{{entry.title}}</h3>[#{{entry.id}}]
+			<h3><a href="?id={{entry.id}}">{{entry.title}}</a></h3>[ edit | remove ]
 			<p>{{entry.content}}</p>
 			</div>
 		{% endfor %}
