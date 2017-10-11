@@ -81,6 +81,8 @@ def newpost():
 	# GET ==> FORM
 	# POST ==> FORM on FAIL
 	#      ==> ADD POST on SUCCESS
+    # TODO: validate form
+    
     return render_template('newpost.html',ghSite_Name=g_ghSITE_NAME, ghSlogan=getSlogan(),ghPage_Title="BLog :: New Post" )
 
 
