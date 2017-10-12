@@ -13,6 +13,12 @@
 		h3 {
             display: inline;
 		}
+		h6 {
+            margin: 0;
+            padding: 0;
+            display: inline;
+            font-size: 75%;
+		}
 	</style>
 	<div class="ghBlogView">
 
@@ -22,7 +28,7 @@
 	{% else %}
 		{% for entry in ghEntries %}
 			<div class="ghBlogEntry">
-			<h3><a href="?id={{entry.id}}">{{entry.title}}</a></h3>[ edit | remove ]
+			<h3><a href="?id={{entry.id}}">{{entry.title}}</a></h3><h6>[ edit | remove ]</h6>
 			<p>{{entry.content}}</p>
 			</div>
 		{% endfor %}
