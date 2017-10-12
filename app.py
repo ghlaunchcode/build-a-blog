@@ -95,6 +95,15 @@ def newpost():
     strNav = '<a href="/">' + g_ghSITE_NAME + '</a>' + " :: " + '<a href="/blog">' + g_ghSECTION_BLOG + '</a> :: ' + g_ghSECTION_NEW 
     strPageTitle = "BLog"
     
+    if request.method == 'POST':
+        entry_name = request.form['pt_in']
+        entry_content = request.form['pe_in']
+        new_entry = BlogEntry(entry_name,entry_content)
+        g_db.session.add(new_entry)
+        g_db.session.commit()
+        return redirect( 'blog?id=' + str(new_entry.id), 302 )
+    
+    
     return render_template('newpost.html',ghSite_Name=g_ghSITE_NAME,ghSlogan=getSlogan(),ghPage_Title=strPageTitle,ghNav=Markup(strNav) )
 
 
