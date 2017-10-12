@@ -81,11 +81,7 @@ def blog():
             strNav += " :: " + '<a href="?id=' + postID + '">' + view_entries.first().title + '</a>'
     except:
         view_entries = ""
-#    print( "DEBUG:::::::", view_entries )
-#    if( view_entries == "" ):
-#        print( "IS NOTHING" )
-#    if( len(view_entries) == 0 ):
-#        print( "IS NOTHING #2" )
+
     return render_template('blog.html',ghSite_Name=g_ghSITE_NAME, ghSlogan=getSlogan(),ghPage_Title=strPageTitle,ghNav=Markup(strNav),ghEntries=view_entries )
 
 # ROUTE "/newpost" :: New Blog Post Form [ Get | Post ]
