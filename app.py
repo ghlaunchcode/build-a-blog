@@ -92,19 +92,34 @@ def newpost():
 	# POST ==> FORM on FAIL
 	#      ==> ADD POST on SUCCESS
     # TODO: validate form
+    entry_name = ""
+    entry_content = ""
+    str_pt_errmsg = ""
+    str_pe_errmsg = ""
     strNav = '<a href="/">' + g_ghSITE_NAME + '</a>' + " :: " + '<a href="/blog">' + g_ghSECTION_BLOG + '</a> :: ' + g_ghSECTION_NEW 
     strPageTitle = "BLog"
+    passthru = False
     
     if request.method == 'POST':
         entry_name = request.form['pt_in']
         entry_content = request.form['pe_in']
-        new_entry = BlogEntry(entry_name,entry_content)
-        g_db.session.add(new_entry)
-        g_db.session.commit()
-        return redirect( 'blog?id=' + str(new_entry.id), 302 )
+        
+        if not entry_name:
+            str_pt_errmsg = "Must provide a title"
+            passthru = True
+        
+        if not entry_content:
+            str_pe_errmsg = "Must have something to say"
+            passthru = True
+        
+        if not passthru:
+            new_entry = BlogEntry(entry_name,entry_content)
+            g_db.session.add(new_entry)
+            g_db.session.commit()
+            return redirect( 'blog?id=' + str(new_entry.id), 302 )
     
     
-    return render_template('newpost.html',ghSite_Name=g_ghSITE_NAME,ghSlogan=getSlogan(),ghPage_Title=strPageTitle,ghNav=Markup(strNav) )
+    return render_template('newpost.html',ghSite_Name=g_ghSITE_NAME,ghSlogan=getSlogan(),ghPage_Title=strPageTitle,ghNav=Markup(strNav),pt_errmsg = str_pt_errmsg, pe_errmsg = str_pe_errmsg, post_title=entry_name, post_entry=entry_content )
 
 
 def main():
